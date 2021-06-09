@@ -1,0 +1,8 @@
+$theme-colors: (
+  'primary': rgb(0, 0, 0),
+  'danger': #ff4136,
+);
+
+// Custom.scss
+// Option A: Include all of Bootstrap
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
