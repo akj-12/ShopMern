@@ -1,0 +1,19 @@
+{
+  "name": "shopmern",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Lets learn Mern Stack",
+  "main": "server.js",
+  "repository": "https://github.com/akj-12/shopmern.git",
+  "scripts": {
+    "start": "nodemon backend/server.js"
+  },
+  "author": "amit <akj.cs.ipu@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

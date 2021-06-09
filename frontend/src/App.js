@@ -15,7 +15,7 @@ const App = () => {
       <main className="mx-2">
         <Container fluid>
           <Route path="/" component={HomePage} exact />
-          <Route path="/product/:id" component={ProductScreens} />
+          <Route path="/products/:id" component={ProductScreens} />
         </Container>
       </main>
       <Footer />

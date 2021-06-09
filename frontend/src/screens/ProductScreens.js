@@ -1,5 +1,6 @@
-import React from 'react';
-import products from '../products';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+// import products from '../products';
 import {
   Button,
   Card,
@@ -14,7 +15,16 @@ import { Link } from 'react-router-dom';
 import Ratings from '../components/Ratings';
 
 const ProductScreens = ({ match }) => {
-  const product = products.find((product) => product._id === match.params.id);
+  const [product, setProduct] = useState({});
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${match.params.id}`);
+      console.log(data.data);
+      setProduct(data.data.product);
+    };
+    fetchProduct();
+  }, [match]);
+  // const product = products.find((product) => product._id === match.params.id);
   return (
     <>
       <Container>
@@ -22,7 +32,7 @@ const ProductScreens = ({ match }) => {
           Go Back
         </Link>
         <Row className="my-3">
-          <Col md={6} classname="my-2">
+          <Col md={6} className="my-2">
             <Image src={product.image} fluid className="shadow" />
           </Col>
           <Col md={3}>
