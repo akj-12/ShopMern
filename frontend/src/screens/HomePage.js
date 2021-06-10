@@ -1,12 +1,15 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
 import Products from '../components/Products';
 import Sidebar from '../components/Sidebar';
+import { listProduct } from '../redux/actions/productActions';
 
 // import products from '../products';
 
 const HomePage = () => {
+  /*
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchProducts = async () => {
@@ -15,6 +18,19 @@ const HomePage = () => {
     };
     fetchProducts();
   }, []);
+  */
+
+  // fetch products from redux store
+  const dispatch = useDispatch();
+
+  // extract values from reducers
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products } = productList;
+
+  useEffect(() => {
+    dispatch(listProduct());
+  }, [dispatch]);
+
   return (
     <>
       <Row>

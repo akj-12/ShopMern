@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 import productsRoute from './routes/productsRoute.js';
 import connectDB from './config/db.js';
+import { errorHandler, notFound } from './middleware/errorMessage.js';
 
 dotenv.config();
 const app = express();
@@ -18,7 +19,17 @@ connectDB();
 app.get('/', (req, res) => {
   res.send('App is running');
 });
+
+/**
+ * Middleware
+ */
 app.use('/api/products', productsRoute);
+
+// not found middleware
+app.use(notFound);
+
+// custom error middleware
+app.use(errorHandler);
 
 /**
  * SERVER
