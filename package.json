@@ -6,7 +6,9 @@
   "main": "server.js",
   "repository": "https://github.com/akj-12/shopmern.git",
   "scripts": {
-    "start": "nodemon backend/server.js"
+    "start": "nodemon backend/server.js",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d"
   },
   "author": "amit <akj.cs.ipu@gmail.com>",
   "license": "MIT",
@@ -14,6 +16,7 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "mongoose": "^5.12.13"
   },
   "devDependencies": {
