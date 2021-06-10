@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+
 // import products from '../products';
 import {
   Button,
@@ -11,85 +11,94 @@ import {
   Row,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Ratings from '../components/Ratings';
+import { listProductDetails } from '../redux/actions/productActions';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const ProductScreens = ({ match }) => {
-  const [product, setProduct] = useState({});
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await axios.get(`/api/products/${match.params.id}`);
-      console.log(data.data);
-      setProduct(data.data.product);
-    };
-    fetchProduct();
-  }, [match]);
-  // const product = products.find((product) => product._id === match.params.id);
+    dispatch(listProductDetails(match.params.id));
+  }, [match, dispatch]);
+
+  const productDetail = useSelector((state) => state.productDetail);
+  const { product, error, loading } = productDetail;
+
   return (
     <>
       <Container>
         <Link to="/" className="btn btn-dark my-3 text-uppercase">
           Go Back
         </Link>
-        <Row className="my-3">
-          <Col md={6} className="my-2">
-            <Image src={product.image} fluid className="shadow" />
-          </Col>
-          <Col md={3}>
-            <ListGroup className=" my-3" varient="flush">
-              <ListGroup.Item>
-                <h3 className="text-center">{product.name}</h3>
-              </ListGroup.Item>
-              <ListGroup.Item className="text-center">
-                <Ratings
-                  value={product.rating}
-                  text={`${product.numReviews} reviews`}
-                />
-              </ListGroup.Item>
-              <ListGroup.Item className="text-center">
-                Price : ${product.price}
-              </ListGroup.Item>
-              <ListGroup.Item>
-                Description : {product.description}
-              </ListGroup.Item>
-            </ListGroup>
-          </Col>
-          <Col md={3} className="my-3 text-uppercase">
-            <Card>
-              <ListGroup variant="flush">
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <Message variant="danger">{error}</Message>
+        ) : (
+          <Row className="my-3">
+            <Col md={6} className="my-2">
+              <Image src={product.image} fluid className="shadow" />
+            </Col>
+            <Col md={3}>
+              <ListGroup className=" my-3" varient="flush">
                 <ListGroup.Item>
-                  <Row>
-                    <Col className="text-uppercase">price :</Col>
-                    <Col>
-                      <strong>{product.price}</strong>
-                    </Col>
-                  </Row>
+                  <h3 className="text-center">{product.name}</h3>
+                </ListGroup.Item>
+                <ListGroup.Item className="text-center">
+                  <Ratings
+                    value={product.rating}
+                    text={`${product.numReviews} reviews`}
+                  />
+                </ListGroup.Item>
+                <ListGroup.Item className="text-center">
+                  Price : ${product.price}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <Row>
-                    <Col className="text-uppercase">Status :</Col>
-                    <Col>
-                      {product.countInStock > 0 ? 'In Stock' : 'Out of stock'}
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <div className="d-grid gap-1">
-                    <Button
-                      variant="dark"
-                      className="text-uppercase fw-bold"
-                      disabled={product.countInStock > 0 ? false : true}
-                    >
-                      {product.countInStock > 0
-                        ? 'Add to cart'
-                        : 'Out of stock'}
-                    </Button>
-                  </div>
+                  Description : {product.description}
                 </ListGroup.Item>
               </ListGroup>
-            </Card>
-          </Col>
-        </Row>
+            </Col>
+            <Col md={3} className="my-3 text-uppercase">
+              <Card>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    <Row>
+                      <Col className="text-uppercase">price :</Col>
+                      <Col>
+                        <strong>{product.price}</strong>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Row>
+                      <Col className="text-uppercase">Status :</Col>
+                      <Col>
+                        {product.countInStock > 0 ? 'In Stock' : 'Out of stock'}
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <div className="d-grid gap-1">
+                      <Button
+                        variant="dark"
+                        className="text-uppercase fw-bold"
+                        disabled={product.countInStock > 0 ? false : true}
+                      >
+                        {product.countInStock > 0
+                          ? 'Add to cart'
+                          : 'Out of stock'}
+                      </Button>
+                    </div>
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card>
+            </Col>
+          </Row>
+        )}
       </Container>
     </>
   );
