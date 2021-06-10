@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
 import Products from '../components/Products';
 import Sidebar from '../components/Sidebar';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 import { listProduct } from '../redux/actions/productActions';
 
 // import products from '../products';
@@ -33,22 +35,28 @@ const HomePage = () => {
 
   return (
     <>
-      <Row>
-        <Col lg={3} sm={12} md={12} className="">
-          <h1 className="text-center my-4">Category</h1>
-          <Sidebar />
-        </Col>
-        <Col lg={9} sm={12} md={12}>
-          <h1 className="text-center my-3">Latest Products</h1>
-          <Row>
-            {products.map((product) => (
-              <Col sm={12} md={6} lg={4} xl={3} key={product._id}>
-                <Products product={product} />
-              </Col>
-            ))}
-          </Row>
-        </Col>
-      </Row>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
+      ) : (
+        <Row>
+          <Col lg={3} sm={12} md={12} className="">
+            <h1 className="text-center my-4">Category</h1>
+            <Sidebar />
+          </Col>
+          <Col lg={9} sm={12} md={12}>
+            <h1 className="text-center my-3">Latest Products</h1>
+            <Row>
+              {products.map((product) => (
+                <Col sm={12} md={6} lg={4} xl={3} key={product._id}>
+                  <Products product={product} />
+                </Col>
+              ))}
+            </Row>
+          </Col>
+        </Row>
+      )}
     </>
   );
 };
