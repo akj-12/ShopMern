@@ -3,6 +3,11 @@ import asyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
 import generateToken from '../utils/generateToken.js';
 
+/**
+ * Description : Authenticate User
+ * Route : POST /api/users/:id
+ * access : private
+ */
 export const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -20,4 +25,13 @@ export const authUser = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error('Invalid email or password');
   }
+});
+
+/**
+ * Description : Get Authenticate User Profile
+ * Route : /api/users/profile
+ * access : private
+ */
+export const getUserProfile = asyncHandler(async (req, res) => {
+  res.send('seccess');
 });
