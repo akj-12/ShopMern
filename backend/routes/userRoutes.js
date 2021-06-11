@@ -1,5 +1,6 @@
 import express from 'express';
 import { authUser, getUserProfile } from '../controllers/userController.js';
+import { protect } from '../middleware/authMiddlware.js';
 
 const router = express.Router();
 
@@ -15,5 +16,5 @@ router.route('/login').post(authUser);
  * Route : /api/users/profile
  * access : private
  */
-router.route('/profile').get(getUserProfile);
+router.route('/profile').get(protect, getUserProfile);
 export default router;
