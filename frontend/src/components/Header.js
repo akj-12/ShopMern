@@ -19,12 +19,31 @@ const Header = () => {
         fixed="top"
         collapseOnSelect
       >
-        <Container>
+        <Container className="d-flex justify-space-between">
           <LinkContainer to="/">
             <Navbar.Brand className="text-uppercase fw-bold">
               ShopMern
             </Navbar.Brand>
           </LinkContainer>
+
+          <LinkContainer to="/cart">
+            <Nav.Link
+              href="/cart"
+              className={` fw-bold text-uppercase  d-block d-sm-none nav-link-item-hover`}
+            >
+              <button
+                type="button"
+                className="btn btn-outline-primary text-white nav-link-item-hover text-uppercase"
+              >
+                <i className="fa fa-shopping-cart mx-2"></i>
+                <span className="badge badge-danger bg-danger mx-2 fw-bold">
+                  {cartItems.length}
+                </span>
+                <span className="sr-only">unread messages</span>
+              </button>
+            </Nav.Link>
+          </LinkContainer>
+
           <Navbar.Toggle
             aria-controls="basic-navbar-nav "
             className="border-0"
@@ -38,10 +57,10 @@ const Header = () => {
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto text-center">
-              <LinkContainer to="/cart">
+              <LinkContainer to="/cart" className="d-none d-lg-block">
                 <Nav.Link
                   href="/cart"
-                  className={` fw-bold text-uppercase  d-block .nav-link-item-hover`}
+                  className={` fw-bold text-uppercase  d-block nav-link-item-hover`}
                 >
                   <button
                     type="button"
