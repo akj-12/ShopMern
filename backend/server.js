@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 
 import productsRoute from './routes/productsRoute.js';
+import usersRoute from './routes/userRoutes.js';
 import connectDB from './config/db.js';
 import { errorHandler, notFound } from './middleware/errorMessage.js';
 
@@ -23,7 +24,9 @@ app.get('/', (req, res) => {
 /**
  * Middleware
  */
+app.use(express.json());
 app.use('/api/products', productsRoute);
+app.use('/api/users', usersRoute);
 
 // not found middleware
 app.use(notFound);
