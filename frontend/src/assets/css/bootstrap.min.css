@@ -22,7 +22,7 @@
   --bs-primary: #09143a;
   --bs-dark: black;
   --bs-danger: #df1b11;
-  --bs-light-dark: rgba(35, 49, 73, 0.993);
+  --bs-light-dark: rgba(13, 12, 17, 0.911);
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
@@ -2971,32 +2971,32 @@ textarea.form-control-lg {
 
 .btn-light-dark {
   color: #fff;
-  background-color: rgba(35, 49, 73, 0.993);
-  border-color: rgba(35, 49, 73, 0.993);
+  background-color: rgba(13, 12, 17, 0.911);
+  border-color: rgba(13, 12, 17, 0.911);
 }
 .btn-light-dark:hover {
   color: #fff;
-  background-color: rgba(30, 42, 62, 0.99405);
-  border-color: rgba(28, 39, 58, 0.9944);
+  background-color: rgba(11, 10, 14, 0.92435);
+  border-color: rgba(10, 9, 13, 0.9288);
 }
 .btn-check:focus + .btn-light-dark, .btn-light-dark:focus {
   color: #fff;
-  background-color: rgba(30, 42, 62, 0.99405);
-  border-color: rgba(28, 39, 58, 0.9944);
-  box-shadow: 0 0 0 0.25rem rgba(68, 80, 101, 0.5);
+  background-color: rgba(11, 10, 14, 0.92435);
+  border-color: rgba(10, 9, 13, 0.9288);
+  box-shadow: 0 0 0 0.25rem rgba(55, 54, 58, 0.5);
 }
 .btn-check:checked + .btn-light-dark, .btn-check:active + .btn-light-dark, .btn-light-dark:active, .btn-light-dark.active, .show > .btn-light-dark.dropdown-toggle {
   color: #fff;
-  background-color: rgba(28, 39, 58, 0.9944);
-  border-color: rgba(26, 37, 55, 0.99475);
+  background-color: rgba(10, 9, 13, 0.9288);
+  border-color: rgba(9, 9, 12, 0.93325);
 }
 .btn-check:checked + .btn-light-dark:focus, .btn-check:active + .btn-light-dark:focus, .btn-light-dark:active:focus, .btn-light-dark.active:focus, .show > .btn-light-dark.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.25rem rgba(68, 80, 101, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(55, 54, 58, 0.5);
 }
 .btn-light-dark:disabled, .btn-light-dark.disabled {
   color: #fff;
-  background-color: rgba(35, 49, 73, 0.993);
-  border-color: rgba(35, 49, 73, 0.993);
+  background-color: rgba(13, 12, 17, 0.911);
+  border-color: rgba(13, 12, 17, 0.911);
 }
 
 .btn-outline-primary {
@@ -3075,27 +3075,27 @@ textarea.form-control-lg {
 }
 
 .btn-outline-light-dark {
-  color: rgba(35, 49, 73, 0.993);
-  border-color: rgba(35, 49, 73, 0.993);
+  color: rgba(13, 12, 17, 0.911);
+  border-color: rgba(13, 12, 17, 0.911);
 }
 .btn-outline-light-dark:hover {
   color: #fff;
-  background-color: rgba(35, 49, 73, 0.993);
-  border-color: rgba(35, 49, 73, 0.993);
+  background-color: rgba(13, 12, 17, 0.911);
+  border-color: rgba(13, 12, 17, 0.911);
 }
 .btn-check:focus + .btn-outline-light-dark, .btn-outline-light-dark:focus {
-  box-shadow: 0 0 0 0.25rem rgba(35, 49, 73, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(13, 12, 17, 0.5);
 }
 .btn-check:checked + .btn-outline-light-dark, .btn-check:active + .btn-outline-light-dark, .btn-outline-light-dark:active, .btn-outline-light-dark.active, .btn-outline-light-dark.dropdown-toggle.show {
   color: #fff;
-  background-color: rgba(35, 49, 73, 0.993);
-  border-color: rgba(35, 49, 73, 0.993);
+  background-color: rgba(13, 12, 17, 0.911);
+  border-color: rgba(13, 12, 17, 0.911);
 }
 .btn-check:checked + .btn-outline-light-dark:focus, .btn-check:active + .btn-outline-light-dark:focus, .btn-outline-light-dark:active:focus, .btn-outline-light-dark.active:focus, .btn-outline-light-dark.dropdown-toggle.show:focus {
-  box-shadow: 0 0 0 0.25rem rgba(35, 49, 73, 0.5);
+  box-shadow: 0 0 0 0.25rem rgba(13, 12, 17, 0.5);
 }
 .btn-outline-light-dark:disabled, .btn-outline-light-dark.disabled {
-  color: rgba(35, 49, 73, 0.993);
+  color: rgba(13, 12, 17, 0.911);
   background-color: transparent;
 }
 
@@ -4421,12 +4421,12 @@ textarea.form-control-lg {
 }
 
 .alert-light-dark {
-  color: rgba(21, 29, 44, 0.9958);
-  background-color: rgba(211, 214, 219, 0.9986);
-  border-color: rgba(190, 194, 201, 0.9979);
+  color: rgba(7, 7, 9, 0.9466);
+  background-color: rgba(213, 213, 214, 0.9822);
+  border-color: rgba(191, 191, 192, 0.9733);
 }
 .alert-light-dark .alert-link {
-  color: rgba(17, 23, 35, 0.99664);
+  color: rgba(5, 5, 7, 0.95728);
 }
 
 @keyframes progress-bar-stripes {
@@ -4739,17 +4739,17 @@ textarea.form-control-lg {
 }
 
 .list-group-item-light-dark {
-  color: rgba(21, 29, 44, 0.9958);
-  background-color: rgba(211, 214, 219, 0.9986);
+  color: rgba(7, 7, 9, 0.9466);
+  background-color: rgba(213, 213, 214, 0.9822);
 }
 .list-group-item-light-dark.list-group-item-action:hover, .list-group-item-light-dark.list-group-item-action:focus {
-  color: rgba(21, 29, 44, 0.9958);
-  background-color: rgba(190, 193, 197, 0.99874);
+  color: rgba(7, 7, 9, 0.9466);
+  background-color: rgba(191, 191, 192, 0.98398);
 }
 .list-group-item-light-dark.list-group-item-action.active {
   color: #fff;
-  background-color: rgba(21, 29, 44, 0.9958);
-  border-color: rgba(21, 29, 44, 0.9958);
+  background-color: rgba(7, 7, 9, 0.9466);
+  border-color: rgba(7, 7, 9, 0.9466);
 }
 
 .btn-close {
@@ -5710,10 +5710,10 @@ textarea.form-control-lg {
 }
 
 .link-light-dark {
-  color: rgba(35, 49, 73, 0.993);
+  color: rgba(13, 12, 17, 0.911);
 }
 .link-light-dark:hover, .link-light-dark:focus {
-  color: rgba(28, 39, 58, 0.9944);
+  color: rgba(10, 9, 13, 0.9288);
 }
 
 .ratio {
@@ -6076,7 +6076,7 @@ textarea.form-control-lg {
 }
 
 .border-light-dark {
-  border-color: rgba(35, 49, 73, 0.993) !important;
+  border-color: rgba(13, 12, 17, 0.911) !important;
 }
 
 .border-white {
@@ -6889,7 +6889,7 @@ textarea.form-control-lg {
 }
 
 .text-light-dark {
-  color: rgba(35, 49, 73, 0.993) !important;
+  color: rgba(13, 12, 17, 0.911) !important;
 }
 
 .text-white {
@@ -6929,7 +6929,7 @@ textarea.form-control-lg {
 }
 
 .bg-light-dark {
-  background-color: rgba(35, 49, 73, 0.993) !important;
+  background-color: rgba(13, 12, 17, 0.911) !important;
 }
 
 .bg-body {

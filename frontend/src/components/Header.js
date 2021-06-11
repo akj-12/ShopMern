@@ -64,21 +64,20 @@ const Header = () => {
                 >
                   <button
                     type="button"
-                    className="btn btn-outline-primary text-white nav-link-item-hover text-uppercase"
+                    className="btn  text-white nav-link-item-hover text-uppercase"
                   >
                     <i className="fa fa-shopping-cart mx-2"></i> Cart
                     <span className="badge badge-danger bg-danger mx-2 fw-bold">
                       {cartItems.length}
                     </span>
-                    <span className="sr-only">unread messages</span>
                   </button>
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to="/login">
-                <Nav.Link className=" fw-bold d-block text-uppercase fw-bold">
+                <Nav.Link className=" fw-bold d-block text-uppercase nav-link-item-hover fw-bold">
                   <button
                     type="button"
-                    className="btn btn-outline-primary text-white nav-link-item-hover text-uppercase fw-bold"
+                    className="btn  text-white nav-link-item-hover text-uppercase fw-bold"
                   >
                     <i className="fa fa-user mx-2"></i> Login
                   </button>
