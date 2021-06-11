@@ -10,7 +10,7 @@ import {
   Row,
 } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../redux/actions/cartActions';
+import { addToCart, removeFromCart } from '../redux/actions/cartActions';
 import { Link } from 'react-router-dom';
 import Message from '../components/Message';
 
@@ -28,11 +28,20 @@ const CartScreen = ({ history, location, match }) => {
       dispatch(addToCart(productId, qty));
     }
   }, [dispatch, productId, qty]);
+
+  const removeFromCartHandler = (id) => {
+    dispatch(removeFromCart(id));
+  };
+
+  const checkoutHandler = () => {
+    history.push('/login?redirect=shipping');
+  };
+
   return (
     <Container className="text-center">
       <Row>
         <Col md={8} className="card shadow my-4">
-          <h3 className="p-2 text-center">Shopping Cart</h3>
+          <h4 className="p-2 text-center text-uppercase">Shopping Cart</h4>
           {cartItems.length === 0 ? (
             <Message>
               Your cart is empty <Link to="/">Go Back</Link>
@@ -70,7 +79,7 @@ const CartScreen = ({ history, location, match }) => {
                       <Button
                         type="button"
                         variant="light"
-                        // onClick={() => removeFromCartHandler(item.product)}
+                        onClick={() => removeFromCartHandler(item.product)}
                       >
                         <i className="fas fa-trash text-danger"></i>
                       </Button>
@@ -82,27 +91,27 @@ const CartScreen = ({ history, location, match }) => {
           )}
         </Col>
         <Col md={4} className="my-4">
-          <Card className="shadow-lg ">
+          <Card className="shadow-lg text-uppercase ">
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <h3>
+                <h4>
                   Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
                   ) items
-                </h3>
+                </h4>
                 <hr />
-                <h4>
+                <h5>
                   Total : $
                   {cartItems
                     .reduce((acc, item) => acc + item.qty * item.price, 0)
                     .toFixed(2)}
-                </h4>
+                </h5>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button
                   type="button"
                   className="btn-block btn-dark text-uppercase"
                   disabled={cartItems.length === 0}
-                  // onClick={checkoutHandler}
+                  onClick={checkoutHandler}
                 >
                   Proceed To Checkout
                 </Button>
