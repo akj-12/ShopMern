@@ -10,10 +10,13 @@ export const protect = asyncHandler(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     try {
+      // match the Bearer token from headers
       token = req.headers.authorization.split(' ')[1];
 
+      // decode JWT and varify
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
+      // find that userswhich varify token and send to next handler
       req.user = await User.findById(decoded.id).select('-password');
 
       next();
