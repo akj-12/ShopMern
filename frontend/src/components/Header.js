@@ -1,37 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
-  const wrapperRef = useRef(null);
   const [isToggle, setIsToggle] = useState(false);
 
-  /**
-   * Hook that alerts clicks outside of the passed ref
-   */
-  function useOutsideAlerter(ref) {
-    useEffect(() => {
-      /**
-       * Alert if clicked on outside of element
-       */
-      function handleClickOutside(event) {
-        if (ref.current && !ref.current.contains(event.target)) {
-          //   alert('You clicked outside of me!');
-        }
-      }
-
-      // Bind the event listener
-      document.addEventListener('click', handleClickOutside);
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener('click', handleClickOutside);
-      };
-    }, [ref]);
-  }
-  useOutsideAlerter(wrapperRef);
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
 
   return (
-    <header ref={wrapperRef}>
+    <header>
       <Navbar
         bg="light-dark"
         className="shadow mb-3"
@@ -68,9 +47,9 @@ const Header = () => {
                     type="button"
                     className="btn btn-outline-primary text-white nav-link-item-hover text-uppercase"
                   >
-                    <i className="fa fa-shopping-cart mx-2"></i> Cart{' '}
+                    <i className="fa fa-shopping-cart mx-2"></i> Cart
                     <span className="badge badge-danger bg-danger mx-2 fw-bold">
-                      9
+                      {cartItems.length}
                     </span>
                     <span className="sr-only">unread messages</span>
                   </button>

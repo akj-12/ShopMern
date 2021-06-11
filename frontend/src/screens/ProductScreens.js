@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // import products from '../products';
 import {
@@ -6,6 +6,7 @@ import {
   Card,
   Col,
   Container,
+  Form,
   Image,
   ListGroup,
   Row,
@@ -18,7 +19,8 @@ import { listProductDetails } from '../redux/actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
-const ProductScreens = ({ match }) => {
+const ProductScreens = ({ history, match }) => {
+  const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,6 +29,10 @@ const ProductScreens = ({ match }) => {
 
   const productDetail = useSelector((state) => state.productDetail);
   const { product, error, loading } = productDetail;
+
+  const addToCartHandler = () => {
+    history.push(`/cart/${match.params.id}?qty=${qty}`);
+  };
 
   return (
     <>
@@ -81,9 +87,36 @@ const ProductScreens = ({ match }) => {
                       </Col>
                     </Row>
                   </ListGroup.Item>
+
+                  {product.countInStock > 0 && (
+                    <ListGroup.Item>
+                      <Row>
+                        <Col>Qty</Col>
+                        <Col>
+                          <Form.Control
+                            as="select"
+                            value={qty}
+                            onChange={(e) => {
+                              setQty(e.target.value);
+                            }}
+                          >
+                            {[...Array(product.countInStock).keys()].map(
+                              (x) => (
+                                <option key={x + 1} value={x + 1}>
+                                  {x + 1}
+                                </option>
+                              )
+                            )}
+                          </Form.Control>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  )}
+
                   <ListGroup.Item>
                     <div className="d-grid gap-1">
                       <Button
+                        onClick={() => addToCartHandler()}
                         variant="dark"
                         className="text-uppercase fw-bold"
                         disabled={product.countInStock > 0 ? false : true}

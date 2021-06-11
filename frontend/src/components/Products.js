@@ -1,9 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import Rating from './Ratings';
+import { addToCart } from '../redux/actions/cartActions';
 
 const Products = ({ product }) => {
+  const dispatch = useDispatch();
+
+  const productId = product._id;
+
+  const qty = 1;
+
+  const addToCartHandler = () => {
+    if (productId) {
+      dispatch(addToCart(productId, qty));
+    }
+  };
+
   return (
     <>
       <Card className="p-2 my-2">
@@ -31,6 +45,7 @@ const Products = ({ product }) => {
           <hr />
           <div className="d-grid gap-1">
             <Button
+              onClick={addToCartHandler}
               variant="dark"
               className="text-uppercase fw-bold"
               disabled={product.countInStock > 0 ? false : true}

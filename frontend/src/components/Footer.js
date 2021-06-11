@@ -7,7 +7,15 @@ const Footer = () => {
       <Container fluid>
         <Row>
           <Col className="bg-light-dark text-white fw-bold text-center p-4 mt-2">
-            Copyright &copy; 2020 MernShop
+            Copyright &copy; 2020 MernShop <br />
+            Code on :
+            <a
+              href="http://www.github.com/akj-12"
+              target="_blank"
+              rel="noreferrer"
+            >
+              &nbsp; Github
+            </a>
           </Col>
         </Row>
       </Container>
