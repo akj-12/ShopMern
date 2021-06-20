@@ -4,22 +4,23 @@ import User from '../models/userModel.js';
 import generateToken from '../utils/generateToken.js';
 
 /**
- * Description : Authenticate User
- * Route : POST /api/users/:id
- * access : private
+ * Description : Authenticate User and get tokens
+ * Route : POST /api/users/login
+ * access : public
  */
 export const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
 
+  // if user exist and their password matched
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      token: generateToken(user._id),
+      token: generateToken(user._id), //if every thing ok generate token
     });
   } else {
     res.status(401);
@@ -48,6 +49,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     password,
   });
 
+  // if every thing ok then generate a token
   if (user) {
     res.status(201).json({
       _id: user._id,
@@ -68,8 +70,8 @@ export const registerUser = asyncHandler(async (req, res) => {
  * access : private
  */
 export const getUserProfile = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
-  console.log(req.user);
+  const user = await User.findById(req.user._id); //get from protected middleware
+
   if (user) {
     res.json({
       _id: user._id,

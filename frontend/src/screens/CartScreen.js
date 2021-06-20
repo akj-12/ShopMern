@@ -15,8 +15,10 @@ import { Link } from 'react-router-dom';
 import Message from '../components/Message';
 
 const CartScreen = ({ history, location, match }) => {
+  // get the id
   const productId = match.params.id;
 
+  //location.search --> ?qty=3 -->[ "?qty", "3" ][1] -->3
   const qty = location.search ? Number(location.search.split('=')[1]) : 1;
 
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ const CartScreen = ({ history, location, match }) => {
   const { cartItems } = cart;
 
   useEffect(() => {
+    // only dispatch an action on valid product id
     if (productId) {
       dispatch(addToCart(productId, qty));
     }
@@ -34,13 +37,14 @@ const CartScreen = ({ history, location, match }) => {
   };
 
   const checkoutHandler = () => {
+    // go to -> /login?redirect=shipping
     history.push('/login?redirect=shipping');
   };
 
   return (
     <Container className="text-center">
       <Row>
-        <Col md={8} className="card shadow my-4">
+        <Col md={8} className="card shadow my-4  p-3 ">
           <h4 className="p-2 text-center text-uppercase">Shopping Cart</h4>
           {cartItems.length === 0 ? (
             <Message>
@@ -57,7 +61,7 @@ const CartScreen = ({ history, location, match }) => {
                     <Col md={3}>
                       <Link to={`/products/${item.product}`}>{item.name}</Link>
                     </Col>
-                    <Col md={2}>${item.price}</Col>
+                    <Col md={2}>₹ {item.price}</Col>
                     <Col md={2} sm={2}>
                       <Form.Control
                         as="select"
@@ -68,6 +72,7 @@ const CartScreen = ({ history, location, match }) => {
                           )
                         }
                       >
+                        {/* [3] --> [0,1,2] */}
                         {[...Array(item.countInStock).keys()].map((x) => (
                           <option key={x + 1} value={x + 1}>
                             {x + 1}
@@ -90,17 +95,18 @@ const CartScreen = ({ history, location, match }) => {
             </ListGroup>
           )}
         </Col>
-        <Col md={4} className="my-4">
-          <Card className="shadow-lg text-uppercase ">
+        <Col md={3} className="my-4   ">
+          <Card className="shadow text-uppercase p-4 ">
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <h4>
+                <h5>
+                  {/* calculate the items quantity */}
                   Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
                   ) items
-                </h4>
+                </h5>
                 <hr />
                 <h5>
-                  Total : $
+                  Total : ₹ {/* calculate totalPrice */}
                   {cartItems
                     .reduce((acc, item) => acc + item.qty * item.price, 0)
                     .toFixed(2)}
@@ -109,7 +115,7 @@ const CartScreen = ({ history, location, match }) => {
               <ListGroup.Item>
                 <Button
                   type="button"
-                  className="btn-block btn-dark text-uppercase"
+                  className="btn-block btn-dark text-uppercase "
                   disabled={cartItems.length === 0}
                   onClick={checkoutHandler}
                 >

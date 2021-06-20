@@ -27,10 +27,12 @@ const userSchema = mongoose.Schema(
   }
 );
 
+// match password
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
+// document middleware runs before create and after create
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     next();

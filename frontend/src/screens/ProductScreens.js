@@ -61,7 +61,7 @@ const ProductScreens = ({ history, match }) => {
                   />
                 </ListGroup.Item>
                 <ListGroup.Item className="text-center">
-                  Price : ${product.price}
+                  Price : ₹ {product.price}
                 </ListGroup.Item>
                 <ListGroup.Item>
                   Description : {product.description}
@@ -100,6 +100,7 @@ const ProductScreens = ({ history, match }) => {
                               setQty(e.target.value);
                             }}
                           >
+                            {/* [3] --> [0,1,2] */}
                             {[...Array(product.countInStock).keys()].map(
                               (x) => (
                                 <option key={x + 1} value={x + 1}>

@@ -40,7 +40,7 @@ const Products = ({ product }) => {
                 />
               </div>
             </Card.Text>
-            <Card.Text as="h3">${product.price}</Card.Text>
+            <Card.Text as="h3">₹ {product.price}</Card.Text>
           </div>
           <hr />
           <div className="d-grid gap-1">

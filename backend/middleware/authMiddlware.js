@@ -16,8 +16,8 @@ export const protect = asyncHandler(async (req, res, next) => {
       // decode JWT and varify
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-      // find that userswhich varify token and send to next handler
-      req.user = await User.findById(decoded.id).select('-password');
+      // find that users which varify token and send to next handler
+      req.user = await User.findById(decoded.id).select('-password'); //not password select
 
       next();
     } catch (error) {

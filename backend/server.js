@@ -15,18 +15,18 @@ const app = express();
 connectDB();
 
 /**
- * ROUTES
- */
-app.get('/', (req, res) => {
-  res.send('App is running');
-});
-
-/**
  * Middleware
  */
 app.use(express.json());
 app.use('/api/products', productsRoute);
 app.use('/api/users', usersRoute);
+
+/**
+ * ROUTES
+ */
+app.get('/', (req, res) => {
+  res.send('App is running');
+});
 
 // not found middleware
 app.use(notFound);
