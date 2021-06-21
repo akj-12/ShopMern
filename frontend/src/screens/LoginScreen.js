@@ -81,7 +81,7 @@ const LoginScreen = ({ location, history }) => {
     <Row>
       <Col className="vertical-center">
         <FormContainer>
-          <div className=" background_color  p-5">
+          <div className=" background_color  p-3">
             <h1 className="text-center">Sign In</h1>
             {error && <Message variant="danger">{error}</Message>}
             {loading && <Loader />}

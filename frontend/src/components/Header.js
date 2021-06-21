@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../redux/actions/userActions';
 
 const Header = () => {
   const [isToggle, setIsToggle] = useState(false);
 
+  const dispatch = useDispatch();
+
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHanlder = () => {
+    dispatch(logout());
+  };
 
   return (
     <header>
@@ -56,7 +65,10 @@ const Header = () => {
             ></i>
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto text-center">
+            <Nav
+              className="ms-auto text-center"
+              onClick={() => setIsToggle(false)}
+            >
               <LinkContainer to="/cart" className="d-none d-lg-block">
                 <Nav.Link
                   href="/cart"
@@ -73,16 +85,33 @@ const Header = () => {
                   </button>
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/login">
-                <Nav.Link className=" fw-bold d-block text-uppercase nav-link-item-hover fw-bold">
-                  <button
-                    type="button"
-                    className="btn  text-white nav-link-item-hover text-uppercase fw-bold"
-                  >
-                    <i className="fa fa-user mx-2"></i> Login
-                  </button>
-                </Nav.Link>
-              </LinkContainer>
+
+              {/* toggle logged in user */}
+              {userInfo ? (
+                <NavDropdown
+                  title={userInfo.name}
+                  id="username"
+                  className="fw-bold d-block text-uppercase nav-link-item-hover fw-bold my-auto"
+                >
+                  <LinkContainer to="/profile">
+                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                  </LinkContainer>
+                  <NavDropdown.Item onClick={logoutHanlder}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <LinkContainer to="/login">
+                  <Nav.Link className=" fw-bold d-block text-uppercase nav-link-item-hover fw-bold">
+                    <button
+                      type="button"
+                      className="btn  text-white nav-link-item-hover text-uppercase fw-bold"
+                    >
+                      <i className="fa fa-user mx-2"></i> Login
+                    </button>
+                  </Nav.Link>
+                </LinkContainer>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
