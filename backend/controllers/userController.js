@@ -83,3 +83,36 @@ export const getUserProfile = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 });
+
+/**
+ * Description : Get Authenticate User Profile
+ * Route : PUT /api/users/profile
+ * access : private
+ */
+export const updateUserProfile = asyncHandler(async (req, res) => {
+  // get the user from DB
+  const user = await User.findById(req.user._id); //get from protected middleware
+
+  // if user exists
+  if (user) {
+    // collect details from body
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    if (req.body.password) {
+      user.password = req.body.password || user.password;
+    }
+    // save after collected data from body
+    const updatedUser = await user.save();
+
+    // send response
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      token: generateToken(updatedUser._id),
+    });
+  } else {
+    throw new Error('User not found');
+  }
+});

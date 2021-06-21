@@ -3,6 +3,7 @@ import {
   authUser,
   getUserProfile,
   registerUser,
+  updateUserProfile,
 } from '../controllers/userController.js';
 import { protect } from '../middleware/authMiddlware.js';
 
@@ -27,5 +28,8 @@ router.route('/login').post(authUser);
  * Route : /api/users/profile
  * access : private(protected routes)
  */
-router.route('/profile').get(protect, getUserProfile);
+router
+  .route('/profile')
+  .get(protect, getUserProfile)
+  .put(protect, updateUserProfile);
 export default router;

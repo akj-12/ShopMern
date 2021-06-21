@@ -9,17 +9,19 @@ import CartScreen from './screens/CartScreen';
 import HomePage from './screens/HomePage';
 import LoginScreen from './screens/LoginScreen';
 import ProductScreens from './screens/ProductScreens';
+import RegisterScreens from './screens/RegisterScreens';
 
 const App = () => {
   return (
     <Router>
       <Header />
-      <main className="mx-2">
+      <main>
         <Container fluid>
+          <Route path="/login" component={LoginScreen} />
+          <Route path="/register" component={RegisterScreens} />
           <Route path="/" component={HomePage} exact />
           <Route path="/products/:id" component={ProductScreens} />
           <Route path="/cart/:id?" component={CartScreen} />
-          <Route path="/login" component={LoginScreen} />
         </Container>
       </main>
       <Footer />
