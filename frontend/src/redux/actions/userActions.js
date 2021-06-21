@@ -5,7 +5,7 @@ import {
   USER_LOGIN_SUCCESS,
 } from '../constants/userConstants';
 
-export const userAction = (email, password) => async (dispatch) => {
+export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
 
@@ -15,13 +15,16 @@ export const userAction = (email, password) => async (dispatch) => {
       },
     };
 
+    // send email password to server and authenticate user and get the response
     const { data } = await axios.post(
       `/api/users/login`,
       { email, password },
       config
     );
+    // if success, return data as payload to reducers
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
 
+    // store in local storage
     localStorage.setItem('userInfo', JSON.stringify(data));
   } catch (error) {
     dispatch({

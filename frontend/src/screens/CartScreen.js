@@ -44,7 +44,7 @@ const CartScreen = ({ history, location, match }) => {
   return (
     <Container className="text-center">
       <Row>
-        <Col md={8} className="card shadow my-4  p-3 ">
+        <Col md={8} className="card custom-shadow my-4  p-3 ">
           <h4 className="p-2 text-center text-uppercase">Shopping Cart</h4>
           {cartItems.length === 0 ? (
             <Message>
@@ -96,7 +96,7 @@ const CartScreen = ({ history, location, match }) => {
           )}
         </Col>
         <Col md={3} className="my-4   ">
-          <Card className="shadow text-uppercase p-4 ">
+          <Card className="custom-shadow text-uppercase p-4 ">
             <ListGroup variant="flush">
               <ListGroup.Item>
                 <h5>

@@ -1,6 +1,7 @@
 body {
   font-family: 'Nunito Sans', sans-serif !important;
   padding-top: 75px;
+  background-color: ghostwhite !important;
 }
 
 main {
@@ -11,4 +12,20 @@ main {
 }
 a {
   text-decoration: none !important;
+}
+
+.vertical-center {
+  min-height: 80%; /* Fallback for browsers do NOT support vh unit */
+  min-height: 80vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+.background_color {
+  background-color: white;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 1rem;
+}
+.custom-shadow {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }

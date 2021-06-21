@@ -20,7 +20,7 @@ const Products = ({ product }) => {
 
   return (
     <>
-      <Card className="p-2 my-2">
+      <Card className="p-2 my-2 custom-shadow">
         <Link to={`/products/${product._id}`}>
           <Card.Img src={`${product.image}`} varient="top" />
         </Link>
