@@ -17,7 +17,8 @@ const LoginScreen = ({ location, history }) => {
   const [values, setValues] = useState(initialValues);
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-
+  const [serverError, setServerError] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
   const dispatch = useDispatch();
 
   const validate = () => {
@@ -56,14 +57,25 @@ const LoginScreen = ({ location, history }) => {
     if (userInfo) {
       history.push(redirect);
     }
-  }, [history, userInfo, redirect]);
+    setServerError(error);
+  }, [history, userInfo, error, redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    if (serverError) {
+      setServerError('');
+    }
 
     if (validate()) {
       setEmailError('');
       setPasswordError('');
+
+      setShowAlert(
+        true,
+        setTimeout(() => {
+          setShowAlert(false);
+        }, 10000)
+      );
 
       dispatch(login(values.email, values.password));
     }
@@ -81,9 +93,13 @@ const LoginScreen = ({ location, history }) => {
     <Row>
       <Col className="vertical-center">
         <FormContainer>
-          <div className=" background_color  p-3">
+          <div className=" background_color  p-lg-5 p-3">
             <h1 className="text-center">Sign In</h1>
-            {error && <Message variant="danger">{error}</Message>}
+            {serverError && (
+              <Message variant="danger" show={showAlert}>
+                {serverError}
+              </Message>
+            )}
             {loading && <Loader />}
             <Form onSubmit={submitHandler} className=" d-grid gap-3">
               <Form.Group controlId="email">
