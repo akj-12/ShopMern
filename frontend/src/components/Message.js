@@ -11,6 +11,7 @@ const Message = ({ variant, children, show }) => {
 
 Message.defaultProps = {
   variant: 'info',
+  show: true,
 };
 
 export default Message;

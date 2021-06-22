@@ -20,7 +20,6 @@ const RegisterScreen = ({ location, history }) => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [nameError, setNameError] = useState('');
-  const [showAlert, setShowAlert] = useState(false);
   const [serverError, setServerError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
@@ -76,27 +75,17 @@ const RegisterScreen = ({ location, history }) => {
     if (userInfo) {
       history.push(redirect);
     }
-    setServerError(error);
-  }, [history, error, userInfo, redirect]);
+  }, [history, userInfo, redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (serverError) {
-      setServerError('');
-    }
 
     if (validate()) {
       setEmailError('');
       setPasswordError('');
       setNameError('');
       setConfirmPasswordError('');
-      setShowAlert(
-        true,
-        setTimeout(() => {
-          setShowAlert(false);
-        }, 10000)
-      );
-
+      setServerError(error);
       dispatch(register(values.name, values.email, values.password));
     }
   };
@@ -115,11 +104,7 @@ const RegisterScreen = ({ location, history }) => {
         <FormContainer>
           <div className=" background_color  p-3 p-lg-5">
             <h1 className="text-center">Sign Up</h1>
-            {serverError && (
-              <Message variant="danger" show={showAlert}>
-                {serverError}
-              </Message>
-            )}
+            {serverError && <Message variant="danger">{serverError}</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler} className=" d-grid gap-3">
               <Form.Group controlId="email">

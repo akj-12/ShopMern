@@ -95,12 +95,12 @@ const ProfileScreen = ({ location, history, getState }) => {
 
   return (
     <Row className="m-2 m-lg-5 ">
+      {loading && <Loader />}
       <Col md={3} className="background_color p-lg-5 p-3 my-2  custom-shadow">
         <h2 className="text-center">User Profile</h2>
         {error && <Message variant="danger">{error}</Message>}
         {success && <Message variant="success">Profile Updated</Message>}
 
-        {loading && <Loader />}
         <Form onSubmit={submitHandler} className="d-grid gap-3">
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
