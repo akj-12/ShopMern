@@ -8,11 +8,10 @@ import {
   updateUserProfile,
 } from '../redux/actions/userActions';
 
-const ProfileScreen = ({ location, history }) => {
+const ProfileScreen = ({ location, history, getState }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -27,8 +26,8 @@ const ProfileScreen = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  //     const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
-  //   const { success } = userUpdateProfile;
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
 
   const validate = () => {
     let emailError = '';
@@ -90,7 +89,7 @@ const ProfileScreen = ({ location, history }) => {
       setNameError('');
       setConfirmPasswordError('');
 
-      // dispatch(register(name,email, password));
+      dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
   };
 
@@ -98,9 +97,9 @@ const ProfileScreen = ({ location, history }) => {
     <Row className="m-2 m-lg-5 ">
       <Col md={3} className="background_color p-lg-5 p-3 my-2  custom-shadow">
         <h2 className="text-center">User Profile</h2>
-        {message && <Message variant="danger">{message}</Message>}
         {error && <Message variant="danger">{error}</Message>}
-        {/* {success && <Message variant="success">Profile Updated</Message>} */}
+        {success && <Message variant="success">Profile Updated</Message>}
+
         {loading && <Loader />}
         <Form onSubmit={submitHandler} className="d-grid gap-3">
           <Form.Group controlId="name">
