@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 import Footer from './components/Footer';
@@ -15,6 +15,9 @@ import ShippingScreens from './screens/ShippingScreens';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
+import ProtectedRoute from './components/ProtectedRoute';
+
+import NotFoundScreen from './screens/NotFoundScreen';
 
 const App = () => {
   return (
@@ -22,16 +25,39 @@ const App = () => {
       <Header />
       <main>
         <Container fluid>
-          <Route path="/login" component={LoginScreen} />
-          <Route path="/order/:id" component={OrderScreen} />
-          <Route path="/shipping" component={ShippingScreens} />
-          <Route path="/payment" component={PaymentScreen} />
-          <Route path="/placeorder" component={PlaceOrderScreen} />
-          <Route path="/register" component={RegisterScreens} />
-          <Route path="/profile" component={ProfileScreens} />
-          <Route path="/" component={HomePage} exact />
-          <Route path="/products/:id" component={ProductScreens} />
-          <Route path="/cart/:id?" component={CartScreen} />
+          <Switch>
+            <Route path="/login" exact={true} component={LoginScreen} />
+            <Route path="/order/:id" exact={true} component={OrderScreen} />
+            <ProtectedRoute
+              path="/shipping"
+              exact={true}
+              component={ShippingScreens}
+            />
+            <ProtectedRoute
+              path="/payment"
+              exact={true}
+              component={PaymentScreen}
+            />
+            <ProtectedRoute
+              path="/placeorder"
+              exact={true}
+              component={PlaceOrderScreen}
+            />
+            <Route path="/register" exact={true} component={RegisterScreens} />
+            <ProtectedRoute
+              path="/profile"
+              exact={true}
+              component={ProfileScreens}
+            />
+            <Route path="/" exact={true} component={HomePage} />
+            <Route
+              path="/products/:id"
+              exact={true}
+              component={ProductScreens}
+            />
+            <Route path="/cart/:id?" exact={true} component={CartScreen} />
+            <Route component={NotFoundScreen} />
+          </Switch>
         </Container>
       </main>
       <Footer />
