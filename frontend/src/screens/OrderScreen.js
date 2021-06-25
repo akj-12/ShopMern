@@ -26,8 +26,12 @@ const OrderScreen = ({ match }) => {
   }
 
   useEffect(() => {
-    dispatch(getOrderDetails(orderId));
-  }, []);
+    if (!order || order._id !== orderId) {
+      dispatch(getOrderDetails(orderId));
+    }
+
+    // eslint-disable-next-line
+  }, [order, orderId]);
 
   return loading ? (
     <Loader />
@@ -36,7 +40,7 @@ const OrderScreen = ({ match }) => {
   ) : (
     <>
       <h5 className="my-3">Order {order._id}</h5>
-      <Row className="my-3 mx-2">
+      <Row className="my-3 mx-4">
         <Col md={8} className="background_color p-3 my-3">
           <ListGroup variant="flush">
             <ListGroup.Item>
