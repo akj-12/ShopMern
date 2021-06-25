@@ -33,7 +33,6 @@ const ProfileScreen = ({ location, history, getState }) => {
 
   const orderListMy = useSelector((state) => state.orderListMy);
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
-  console.log(orderListMy);
 
   const validate = () => {
     let emailError = '';
