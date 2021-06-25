@@ -40,7 +40,7 @@ const OrderScreen = ({ match }) => {
   ) : (
     <>
       <h5 className="my-3">Order {order._id}</h5>
-      <Row className="my-3 mx-4">
+      <Row className="my-3 mx-2">
         <Col md={8} className="background_color p-3 my-3">
           <ListGroup variant="flush">
             <ListGroup.Item>
