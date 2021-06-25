@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 import productsRoute from './routes/productsRoute.js';
 import usersRoute from './routes/userRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 import connectDB from './config/db.js';
 import { errorHandler, notFound } from './middleware/errorMessage.js';
 
@@ -20,6 +21,7 @@ connectDB();
 app.use(express.json());
 app.use('/api/products', productsRoute);
 app.use('/api/users', usersRoute);
+app.use('/api/orders', orderRoutes);
 
 /**
  * ROUTES
