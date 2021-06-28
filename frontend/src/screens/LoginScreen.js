@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { login } from '../redux/actions/userActions';
@@ -76,61 +77,66 @@ const LoginScreen = ({ location, history }) => {
   };
 
   return (
-    <Row>
-      <Col className="vertical-center">
-        <FormContainer>
-          <div className=" background_color  p-lg-5 p-3">
-            <h1 className="text-center">Sign In</h1>
-            {error && <Message variant="danger">{error}</Message>}
-            {loading && <Loader />}
-            <Form onSubmit={submitHandler} className=" d-grid gap-3">
-              <Form.Group controlId="email">
-                <Form.Label>Email Address</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter email"
-                  value={values.email}
-                  name="email"
-                  onChange={onChangeHandler}
-                ></Form.Control>
-                <span className="text-danger">{emailError}</span>
-              </Form.Group>
+    <>
+      <Meta title="ShopMern | Login" />
+      <Row>
+        <Col className="vertical-center">
+          <FormContainer>
+            <div className=" background_color  p-lg-5 p-3">
+              <h1 className="text-center">Sign In</h1>
+              {error && <Message variant="danger">{error}</Message>}
+              {loading && <Loader />}
+              <Form onSubmit={submitHandler} className=" d-grid gap-3">
+                <Form.Group controlId="email">
+                  <Form.Label>Email Address</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    value={values.email}
+                    name="email"
+                    onChange={onChangeHandler}
+                  ></Form.Control>
+                  <span className="text-danger">{emailError}</span>
+                </Form.Group>
 
-              <Form.Group controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter password"
-                  value={values.password}
-                  name="password"
-                  onChange={onChangeHandler}
-                ></Form.Control>
-                <span className="text-danger">{passwordError}</span>
-              </Form.Group>
+                <Form.Group controlId="password">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Enter password"
+                    value={values.password}
+                    name="password"
+                    onChange={onChangeHandler}
+                  ></Form.Control>
+                  <span className="text-danger">{passwordError}</span>
+                </Form.Group>
 
-              <Button
-                type="submit"
-                className="my-4 p-2 text-uppercase shadow fw-bold"
-                variant="primary"
-              >
-                Sign In
-              </Button>
-            </Form>
-
-            <Row className="py-3">
-              <Col>
-                New Customer?{' '}
-                <Link
-                  to={redirect ? `/register?redirect=${redirect}` : '/register'}
+                <Button
+                  type="submit"
+                  className="my-4 p-2 text-uppercase shadow fw-bold"
+                  variant="primary"
                 >
-                  Register
-                </Link>
-              </Col>
-            </Row>
-          </div>
-        </FormContainer>
-      </Col>
-    </Row>
+                  Sign In
+                </Button>
+              </Form>
+
+              <Row className="py-3">
+                <Col>
+                  New Customer?{' '}
+                  <Link
+                    to={
+                      redirect ? `/register?redirect=${redirect}` : '/register'
+                    }
+                  >
+                    Register
+                  </Link>
+                </Col>
+              </Row>
+            </div>
+          </FormContainer>
+        </Col>
+      </Row>
+    </>
   );
 };
 

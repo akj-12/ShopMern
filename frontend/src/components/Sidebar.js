@@ -32,7 +32,7 @@ const Sidebar = () => {
           </ButtonGroup>
         </Form>
       </Card>
-      <h1 className="my-4 text-center">Top Products</h1>
+      <h2 className="my-4 text-center">Top Products</h2>
       <div className="my-3 background_color ">
         <ProductCarasoul />
       </div>

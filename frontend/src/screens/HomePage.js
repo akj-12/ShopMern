@@ -7,6 +7,7 @@ import Sidebar from '../components/Sidebar';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Paginate from '../components/Paginate';
+import Meta from '../components/Meta';
 import { listProduct } from '../redux/actions/productActions';
 
 // import products from '../products';
@@ -29,6 +30,7 @@ const HomePage = ({ match }) => {
 
   return (
     <>
+      <Meta />
       {loading ? (
         <Loader />
       ) : error ? (

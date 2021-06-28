@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../redux/actions/cartActions';
 import { Link } from 'react-router-dom';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 
 const CartScreen = ({ history, location, match }) => {
   // get the id
@@ -43,6 +44,7 @@ const CartScreen = ({ history, location, match }) => {
 
   return (
     <Container className="text-center">
+      <Meta title="ShopMern | Cart" />
       <Row>
         <Col md={8} className="card custom-shadow my-4  p-3 ">
           <h4 className="p-2 text-center text-uppercase">Shopping Cart</h4>

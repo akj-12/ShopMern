@@ -21,6 +21,7 @@ import {
 } from '../redux/actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../redux/constants/productConstant';
 
 const ProductScreens = ({ history, match }) => {
@@ -166,6 +167,7 @@ const ProductScreens = ({ history, match }) => {
             </Row>
 
             <Row>
+              <Meta title="ShopMern | Product Details " />
               <Col md={6}>
                 <h2 className="my-3">Reviews</h2>
                 <div className="background_color">
