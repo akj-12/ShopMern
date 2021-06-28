@@ -16,6 +16,7 @@ import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
 import ProtectedRoute from './components/ProtectedRoute';
+import UserListScreens from './screens/UserListScreens';
 
 import NotFoundScreen from './screens/NotFoundScreen';
 
@@ -56,6 +57,7 @@ const App = () => {
               component={ProductScreens}
             />
             <Route path="/cart/:id?" exact={true} component={CartScreen} />
+            <Route path="/admin/userlist" component={UserListScreens} />
             <Route component={NotFoundScreen} />
           </Switch>
         </Container>
