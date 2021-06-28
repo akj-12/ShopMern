@@ -85,6 +85,16 @@ export const getUserProfile = asyncHandler(async (req, res) => {
 });
 
 /**
+ * Description : Get All user
+ * Route : GET /api/users
+ * access : private | admin
+ */
+export const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({}); //get all users
+  res.status(200).json(users);
+});
+
+/**
  * Description : Get Authenticate User Profile
  * Route : PUT /api/users/profile
  * access : private

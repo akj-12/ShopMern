@@ -10,7 +10,7 @@ const Footer = () => {
             Copyright &copy; 2020 MernShop <br />
             Code on :
             <a
-              href="http://www.github.com/akj-12"
+              href="http://www.github.com/akj-12/shopmern"
               target="_blank"
               rel="noreferrer"
             >
