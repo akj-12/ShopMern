@@ -55,6 +55,7 @@ const App = () => {
               component={ProfileScreens}
             />
             <Route path="/" exact={true} component={HomePage} />
+            <Route path="/search/:keyword" component={HomePage} />
             <Route
               path="/products/:id"
               exact={true}

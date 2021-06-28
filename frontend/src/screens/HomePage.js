@@ -10,17 +10,8 @@ import { listProduct } from '../redux/actions/productActions';
 
 // import products from '../products';
 
-const HomePage = () => {
-  /*
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get('/api/products');
-      setProducts(data.data.products);
-    };
-    fetchProducts();
-  }, []);
-  */
+const HomePage = ({ match }) => {
+  const keyword = match.params.keyword;
 
   // fetch products from redux store
   const dispatch = useDispatch();
@@ -30,8 +21,8 @@ const HomePage = () => {
   const { loading, error, products } = productList;
 
   useEffect(() => {
-    dispatch(listProduct());
-  }, [dispatch]);
+    dispatch(listProduct(keyword));
+  }, [dispatch, keyword]);
 
   return (
     <>

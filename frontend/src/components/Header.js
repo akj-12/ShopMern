@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../redux/actions/userActions';
+import SearchBox from './SearchBox';
 
 const Header = () => {
   const [isToggle, setIsToggle] = useState(false);
@@ -65,8 +67,13 @@ const Header = () => {
             ></i>
           </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav">
+            <div className="mx-auto ">
+              <Route
+                render={({ history }) => <SearchBox history={history} />}
+              />
+            </div>
             <Nav
-              className="ms-auto text-center"
+              className="mr-auto text-center"
               onClick={() => setIsToggle(false)}
             >
               <LinkContainer to="/cart" className="d-none d-lg-block">
