@@ -20,6 +20,7 @@ import UserListScreens from './screens/UserListScreens';
 import UserEditScreens from './screens/UserEditScreens';
 
 import NotFoundScreen from './screens/NotFoundScreen';
+import ProductListScreen from './screens/ProductListScreen';
 
 const App = () => {
   return (
@@ -60,6 +61,7 @@ const App = () => {
             <Route path="/cart/:id?" exact={true} component={CartScreen} />
             <Route path="/admin/userlist" component={UserListScreens} />
             <Route path="/admin/user/:id/edit" component={UserEditScreens} />
+            <Route path="/admin/productlist" component={ProductListScreen} />
             <Route component={NotFoundScreen} />
           </Switch>
         </Container>
