@@ -55,11 +55,17 @@ const App = () => {
               component={ProfileScreens}
             />
             <Route path="/" exact={true} component={HomePage} />
-            <Route path="/search/:keyword" component={HomePage} />
+            <Route path="/search/:keyword" component={HomePage} exact />
             <Route
               path="/products/:id"
               exact={true}
               component={ProductScreens}
+            />
+            <Route path="/page/:pageNumber" component={HomePage} exact />
+            <Route
+              path="/search/:keyword/page/:pageNumber"
+              component={HomePage}
+              exact
             />
             <Route path="/cart/:id?" exact={true} component={CartScreen} />
             <Route path="/admin/userlist" component={UserListScreens} />
@@ -68,7 +74,10 @@ const App = () => {
               path="/admin/product/:id/edit"
               component={ProductEditScreen}
             />
-            <Route path="/admin/productlist" component={ProductListScreen} />
+            <Route
+              path="/admin/productlist/:pageNumber"
+              component={ProductListScreen}
+            />
             <Route path="/admin/orderlist" component={OrderListScreen} />
             <Route component={NotFoundScreen} />
           </Switch>

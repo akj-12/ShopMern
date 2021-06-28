@@ -9,6 +9,9 @@ import Product from '../models/productModel.js';
  */
 export const getAllProducts = asyncHandler(async (req, res) => {
   // const products = await Product.find();
+  const pageSize = 10;
+  const page = Number(req.query.pageNumber) || 1;
+
   const keyword = req.query.keyword
     ? {
         name: {
@@ -18,9 +21,15 @@ export const getAllProducts = asyncHandler(async (req, res) => {
       }
     : {};
 
-  const products = await Product.find({ ...keyword });
+  const count = await Product.countDocuments({ ...keyword });
+  const products = await Product.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
   if (products) {
-    res.status(200).json({ status: 'success', data: { products } });
+    res.status(200).json({
+      status: 'success',
+      data: { products, page, pages: Math.ceil(count / pageSize) },
+    });
   } else {
     // res.status(404).json({ status: 'fail', message: 'No products data found' });
     res.status(404);
