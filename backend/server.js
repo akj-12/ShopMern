@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import helmet from 'helmet';
 
 import productsRoute from './routes/productsRoute.js';
 import usersRoute from './routes/userRoutes.js';
@@ -19,6 +20,7 @@ connectDB();
  * Middleware
  */
 app.use(express.json());
+app.use(helmet());
 app.use('/api/products', productsRoute);
 app.use('/api/users', usersRoute);
 app.use('/api/orders', orderRoutes);
