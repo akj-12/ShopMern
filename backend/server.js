@@ -2,6 +2,7 @@ import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
+import morgan from 'morgan';
 
 import productsRoute from './routes/productsRoute.js';
 import usersRoute from './routes/userRoutes.js';
@@ -12,6 +13,10 @@ import { errorHandler, notFound } from './middleware/errorMessage.js';
 
 dotenv.config();
 const app = express();
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 /**
  * DATABASE
